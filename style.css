@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html,body{
+    height: 100%;
+}
+
+.game_board {
+    width: 100%; /*1º Resposivo Grid - Deixando a tela 100% com max-width permite que o grid fique responsivo com os codigos abaixo*/
+    max-width: 600px;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 120px); /*2º Resposivo Grid - deixas as colunas flexiveis para o wrap em diferentes resoluções*/
+    grid-template-rows: auto auto auto auto auto;
+    gap: 15px;
+    justify-content: center;
+}
+
+.card {
+    width: 110px;
+    height: 110px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d; /*1º Parte do efeito de flip - Essa config preserva o efeito 3D para o efeito da animação*/
+    transition: all 0.5s; /*4º Parte do efeito de flip - Transição para ser possivel acompanhar o efeito*/
+}
+
+.front_card, .back_card {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 7px 7px 10px 1px rgba(114, 114, 114, 0.836);
+    position: absolute;
+    backface-visibility: hidden; /*3º Parte do efeito de flip - Esconde qualquer elemento que esteja invertido*/
+}
+
+.front_card {
+    background-color: rgb(10, 17, 119);
+    transform: rotateY(180deg); /*2º Parte do efeito de flip - Inverte a carta para o proximo passo*/
+}
+
+.front_card img {
+    width: 100%;
+    padding: 10px;
+}
+
+.back_card {
+    background-color: rgb(51, 134, 243);
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.game_over {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.747);
+    position: absolute;
+    top: 0;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game_over h2 {
+    font-size: 2em;
+    color: white;
+    text-align: center;
+    padding: 0 2px;
+}
+
+.game_over button {
+    width: 160px;
+    height: 40px;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: yellow;
+    border: none;
+    border-radius: 10px;
+    margin-top: 1em;
+}
