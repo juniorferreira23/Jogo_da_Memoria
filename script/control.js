@@ -2,6 +2,7 @@ const FRONT = 'front_card'
 const BACK = 'back_card'
 
 startGame()
+restartGameView()
 
 function startGame(){
 
@@ -10,8 +11,8 @@ function startGame(){
 
 function initializeCards(cards){ // 3- Criando os cards views na pagina
 
-    let gameBoard = document.querySelector('.game_board')
-    gameBoard.innerHTML = '' //Limpando o tabuleiro
+    let gameBoard = document.querySelector('.game_board');
+    gameBoard.innerHTML = ''; 
 
     game.cards.forEach(card => { 
 
@@ -66,6 +67,9 @@ function flipCard() { // 6.1- Criando o flip de cartas
             }else if(game.checkMatch()){
                 console.log('iguais!')
                 game.clearChoiceCards()
+                setTimeout(()=>{
+                    game.gameOver()
+                },500)
             }
         }
     }
@@ -83,8 +87,21 @@ function clearCards(){ // 6.8- desvira as cartas e limpa as variaveis firstCard 
 
         game.clearChoiceCards()
     }, 1000);
+}
+
+function restartGameView(){
+    let btnRestart = document.querySelector('#restart')
 
     
+
+    btnRestart.addEventListener('click', ()=>{
+        game.restartGame()
+        startGame()
+        let gameOverView = document.querySelector('.game_over')
+        gameOverView.style.display = 'none'
+    })
+
+        
 }
 
 

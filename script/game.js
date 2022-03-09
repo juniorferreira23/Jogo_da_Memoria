@@ -95,5 +95,22 @@ const game = { //Receber todas as váriavéis dentro de um elemento acho que é 
         }
 
         return arr;
+    },
+
+    gameOver: function(){
+
+        let allFlipped = this.cards.filter(card => card.flipped == true)
+
+        if(allFlipped.length == this.cards.length){
+            let gameOverView = document.querySelector('.game_over')
+            gameOverView.style.display = 'flex'
+        }
+    },
+
+    restartGame: function(){
+       this.cards = []
     }
+    
+
+
 }
